@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+
+    <!-- icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+</head>
+<body>
+
+    
+    
+<main>
+        <form id="form" autocomplete="off">
+            <p class="alert"></p>
+            <h3 class="title">Todo List</h3>
+            <div class="control">
+                <input type="text" id="entry" placeholder="Add your task">
+                <button type="submit" class="btn submit-btn">Add</button>
+                <button type="button" class="btn cancel-btn d-none">Cancel</button>
+            </div>
+        </form>
+
+        <ul id="todo-list" class="list-container">
+           <!--  <li class="list-item">
+                <p class="text">Lorem ipsum dolor sit.</p>
+                <i class='bx bxs-edit bx-sm'></i>
+                <i class='bx bx-check bx-sm'></i>
+                <i class='bx bxs-trash bx-sm'></i>
+            </li> -->
+        </ul>
+        <button class="btn clear-btn d-none">Clear Items</button>
+</main>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
