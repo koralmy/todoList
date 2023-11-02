@@ -201,3 +201,10 @@ li.liChecked .bx.bxs-edit{
 .textDiv {
   padding-right: 30px;
 }
+
+@media (min-width: 320px) and (max-width: 700px) {
+  main {
+    max-height: 65vh;
+    min-width: 95vw;
+  }
+}
