@@ -1,4 +1,3 @@
-//Dom manipulation
 const entry = document.getElementById("entry");
 const form = document.getElementById("form");
 const ul = document.getElementById("todo-list");
@@ -10,16 +9,16 @@ const cancelBtn = document.querySelector(".cancel-btn");
 
 //LocalStorage Key
 let LSkey = "items";
-//Edit points
-let editFlag = false;
-let editElement; // an HTML element initially undefined
-let editID; // same idea as above to pass the ID of the selected LS item.
 
-// General Attached Events
-window.addEventListener("DOMContentLoaded", setupItems); //Load content from LS
-form.addEventListener("submit", addItem); // submit form
-clearBtn.addEventListener("click", clearItems); // clear all
-cancelBtn.addEventListener("click", setBackToDefault); //cancel Edit
+let editFlag = false;
+let editElement;
+let editID; 
+
+
+window.addEventListener("DOMContentLoaded", setupItems); 
+form.addEventListener("submit", addItem); 
+clearBtn.addEventListener("click", clearItems); 
+cancelBtn.addEventListener("click", setBackToDefault); 
 
 function addItem(e) {
   e.preventDefault();
@@ -27,7 +26,7 @@ function addItem(e) {
   let id = new Date().getTime().toString(); //for LS
 
   if (val && !editFlag) {
-    // !editFlag means I am creating a new brand Item NO editing.
+   
     createLIS(val, id);
     displayAlert("A new item has been added!", "alert-success");
     clearBtn.classList.remove("d-none");
@@ -70,22 +69,20 @@ function createLIS(val, id) {
 
 //Icons functions
 function editItem() {
-  let pText = this.previousElementSibling; //p.text HTML element
-  // Now pass this element to be global with
+  let pText = this.previousElementSibling; 
   editElement = pText;
-  // text value to the input
+  
   entry.value = pText.innerText;
-  // editFLag for the submit actions
+  
   editFlag = true;
-  //LS ID to make it "global"
   editID = this.parentElement.dataset.id;
-  // hide all icons
+  
   ul.querySelectorAll(".bx").forEach((icon) => {
     icon.classList.toggle("v-none");
   });
   cancelBtn.classList.toggle("d-none");
   submitBtn.innerText = "Edit";
-  //editing mode - remove Clear items button
+  
   clearBtn.classList.add("d-none");
 }
 
@@ -98,7 +95,7 @@ function deleteItem() {
   let id = this.parentElement.dataset.id; // LS ID
   ul.removeChild(this.parentElement);
   displayAlert("one item was removed!", "alert-danger");
-  //if there is no more childs - remove the clear items btn
+  
   if (ul.children.length === 0) {
     clearBtn.classList.add("d-none");
   }
@@ -106,7 +103,7 @@ function deleteItem() {
   removeFromLS(id);
 }
 
-//other functions
+
 function displayAlert(msg, styles) {
   alertP.innerText = msg;
   alertP.classList.add(styles);
@@ -138,7 +135,7 @@ function setBackToDefault() {
   });
 }
 
-// LocalStorage Functions
+
 function addToLS(val, id) {
   let obj = { id, val };
   let items = getLS();
@@ -155,9 +152,9 @@ function getLS() {
 function removeFromLS(id) {
   let items = getLS();
   items = items.filter((item) => item.id !== id);
-  //update LS
+  
   localStorage.setItem(LSkey, JSON.stringify(items));
-  //if there is no items left, remove the LS
+  
   if (items.length === 0) {
     localStorage.removeItem(LSkey);
   }
@@ -169,7 +166,7 @@ function editLS(val, editID) {
     if (item.id === editID) item.val = val;
     return item;
   });
-  //update LS
+
   localStorage.setItem(LSkey, JSON.stringify(items));
 }
 
